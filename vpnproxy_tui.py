@@ -490,7 +490,7 @@ class Connection:
         vpn_file.close()
 
         ovpn = vpn_file.name
-        command = ['openvpn', '--config', ovpn]
+        command = ['openvpn', '--config', ovpn, '--data-ciphers', 'AES-128-CBC']
         p = Popen(command, stdout=PIPE, stderr=PIPE, bufsize=1, close_fds=ON_POSIX, universal_newlines=True)
         q = Queue()
         t = Thread(target=self.vpn_output, args=(p.stdout, q))
